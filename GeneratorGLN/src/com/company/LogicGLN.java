@@ -29,40 +29,15 @@ public class LogicGLN {
     }
 
     private int calculateGLN(ArrayList<Integer> arr){ //создание 13-ого числа для глна
-        int evenSixNum;
-        int oddSixNum;
-        int resultThirteen;
-        int one = 0;
-        int two = 1;
-        int three = 2;
-        int four = 3;
-        int five = 4;
-        int six = 5;
-        int seven = 6;
-        int eight = 7;
-        int nine = 8;
-        int ten = 9;
-        int eleven = 10;
-        int twenty = 11;
-        int[] data = new int[arr.size()];
-        for (int i = 0 ; i < data.length; i++){
-            data[i] = arr.get(i);
+        int evenSixNum = 0 , oddSixNum = 0;
+        int x13;
+        for (int i = 1; i <= 6; i++) {
+            oddSixNum = oddSixNum + arr.get(2*i - 2);
+            evenSixNum = evenSixNum + arr.get(2*i - 1);
         }
-        evenSixNum = (data[two]+data[four]+data[six]+data[eight]+data[ten]+data[twenty])*3;
-
-        oddSixNum = data[one]+data[three]+data[five]+data[seven]+data[nine]+data[eleven];
-
-        resultThirteen = evenSixNum + oddSixNum;
-
-        resultThirteen = resultThirteen % base;
-
-        resultThirteen = base - resultThirteen;
-
-        if (resultThirteen == 10){
-            return 0;
-        }
-        else
-            return resultThirteen;
+        x13 = (oddSixNum + evenSixNum * 3) % base;
+        x13 = base - x13;
+        return x13 == base ? 0 : x13;
     }
 
     private void getListGln(){ //запись глнов в главный массив
